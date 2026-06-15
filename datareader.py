@@ -111,6 +111,8 @@ class YcbineoatReader:
 
   def get_mask(self,i):
     mask = cv2.imread(self.color_files[i].replace('rgb','masks'),-1)
+    if mask is None:
+      return None
     if len(mask.shape)==3:
       for c in range(3):
         if mask[...,c].sum()>0:
